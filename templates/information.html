@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recommended Housing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .listing {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .listing h2 {
+      margin: 0 0 0.5rem 0;
+    }
+    .listing p {
+      margin: 0.25rem 0;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Recommended Housing Options</h1>
+
+    {% if listings %}
+      {% for apt in listings %}
+        <div class="listing">
+          <h2><a href="{{ apt.link }}" target="_blank">{{ apt.title }}</a></h2>
+          <p><strong>📍 Address:</strong> {{ apt.address }}</p>
+          <p><strong>💲 Price:</strong> {{ apt.price }}</p>
+          <p><strong>🛏 Beds:</strong> {{ apt.beds }}</p>
+          <p><strong>🚶 Walk Time:</strong> {{ apt.walking_time }} ({{ apt.walking_distance }})</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No listings match your criteria. Try adjusting your filters.</p>
+    {% endif %}
+
+    <a href="/" class="back-btn">← Back to Search</a>
+  </div>
+</body>
+</html>

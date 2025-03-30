@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVA Housing Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .card h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input,
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>UVA Housing Finder</h1>
+    <form action="/information" method="POST">
+      <div>
+        <label for="price">Maximum Price ($)</label>
+        <input type="number" id="price" name="price" placeholder="e.g. 1200" required />
+      </div>
+      <div>
+        <label for="beds">Number of Beds</label>
+        <input type="number" id="beds" name="beds" placeholder="e.g. 2" required />
+      </div>
+      <div>
+        <label for="distance">Preferred Travel Time (mins)</label>
+        <input type="number" id="distance" name="distance" placeholder="e.g. 15" required />
+      </div>
+      <div>
+        <label for="school">School at UVA</label>
+        <select id="school" name="school" required>
+          <option value="">Select your school</option>
+          <option value="engineering">Engineering</option>
+          <option value="data_science">Data Science</option>
+          <option value="mcintire">McIntire</option>
+          <option value="arts_sciences">Arts & Sciences</option>
+        </select>
+      </div>
+      <button type="submit">Find Housing</button>
+    </form>
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const price = document.getElementById("price").value;
+      const beds = document.getElementById("beds").value;
+      const distance = document.getElementById("distance").value;
+      const school = document.getElementById("school").value;
+
+      // Save form data to localStorage
+      localStorage.setItem("formData", JSON.stringify({ price, beds, distance, school }));
+
+      // Redirect to results page
+      window.location.href = "information.html";
+
+    }
+  </script>
+</body>
+</html>
